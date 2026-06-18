@@ -1,0 +1,25 @@
+name: Cypress Tests
+
+# Déclencheur : s'exécute sur push et pull request vers main
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  cypress-run:
+    # Machine virtuelle fournie par GitHub
+    runs-on: ubuntu-latest
+
+    steps:
+      # Étape 1 : Récupérer le code source
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      # Étape 2 : Installer Node.js
+      - name: Installer Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
