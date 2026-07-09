@@ -23,3 +23,7 @@ jobs:
         with:
           node-version: 20
           cache: "npm"
+
+          # Étape 3 : Installer les dépendances (npm ci, pas npm install)
+      - name: Installer les dépendances
+        run: npm ci
