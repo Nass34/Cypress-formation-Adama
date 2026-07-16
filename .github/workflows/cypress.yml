@@ -23,3 +23,31 @@ jobs:
         with:
           node-version: 20
           cache: "npm"
+
+          # Étape 3 : Installer les dépendances (npm ci, pas npm install)
+      - name: Installer les dépendances
+        run: npm ci
+
+        # Étape 4 : Lancer tous les tests Cypress en mode headless
+      - name: Lancer les tests Cypress
+        run: npx cypress run
+        env:
+          CI: "true" # Active video: process.env.CI === 'true'
+
+          # Étape 5 : Upload screenshots si échec
+      - name: Upload des screenshots
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+          retention-days: 7
+
+          # Étape 6 : Upload vidéos (toujours)
+      - name: Upload des vidéos
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-videos
+          path: cypress/videos
+          retention-days: 7
