@@ -42,3 +42,12 @@ jobs:
           name: cypress-screenshots
           path: cypress/screenshots
           retention-days: 7
+
+          # Étape 6 : Upload vidéos (toujours)
+      - name: Upload des vidéos
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-videos
+          path: cypress/videos
+          retention-days: 7
