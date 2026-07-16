@@ -5,6 +5,7 @@ module.exports = defineConfig({
     baseUrl: 'https://www.saucedemo.com',
     supportFile: false,
     specPattern: "e2e/**/*.cy.js",
+    video: true,
     setupNodeEvents(on, config) {
 
       // implement node event listeners here
