@@ -33,3 +33,12 @@ jobs:
         run: npx cypress run
         env:
           CI: "true" # Active video: process.env.CI === 'true'
+
+          # Étape 5 : Upload screenshots si échec
+      - name: Upload des screenshots
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+          retention-days: 7
